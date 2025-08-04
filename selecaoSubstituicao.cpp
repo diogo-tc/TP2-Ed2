@@ -3,7 +3,9 @@
 #include "arquivo.h"
 
 #include <queue>
+#include <vector>
 #include <fstream>
+#include <algorithm>
 
 struct EntradaHeap {
     Registro reg;
@@ -11,7 +13,7 @@ struct EntradaHeap {
 
     EntradaHeap(const Registro& r) : reg(r), congelado(false) {}
 
-    // Operador de comparação para heap mínimo
+    // Comparação para heap mínimo
     bool operator>(const EntradaHeap& outro) const {
         return reg.nota > outro.reg.nota;
     }
@@ -33,15 +35,19 @@ void geraBlocosComSelecaoSubstituicao(const std::vector<Registro>& registros, in
             EntradaHeap, std::vector<EntradaHeap>, std::greater<EntradaHeap>> heap(area.begin(), area.end());
 
         std::vector<Registro> bloco;
-
         Registro ultimoInserido;
         ultimoInserido.nota = -1.0;
+
+        std::vector<EntradaHeap> novaArea;
 
         while (!heap.empty()) {
             EntradaHeap menor = heap.top();
             heap.pop();
 
-            if (menor.congelado) continue;
+            if (menor.congelado) {
+                novaArea.push_back(menor);
+                continue;
+            }
 
             bloco.push_back(menor.reg);
             ultimoInserido = menor.reg;
@@ -49,23 +55,26 @@ void geraBlocosComSelecaoSubstituicao(const std::vector<Registro>& registros, in
             // Reposição do heap com novo registro, se houver
             if (pos < (int)registros.size()) {
                 Registro novo = registros[pos++];
+                EntradaHeap novoHeapEntry(novo);
+
                 if (novo.nota < ultimoInserido.nota) {
-                    heap.push(EntradaHeap(novo)); // congela no próximo bloco
-                    heap.top().congelado = true;
+                    novoHeapEntry.congelado = true; // Vai para o próximo bloco
+                    novaArea.push_back(novoHeapEntry);
                 } else {
-                    heap.push(EntradaHeap(novo));
+                    heap.push(novoHeapEntry); // Continua no bloco atual
                 }
             }
         }
 
-        escreveRegistros(nomeFitaEntrada(blocoAtual), bloco);
+        // Escreve o bloco gerado na fita correspondente
+        escreveRegistros(nomeFitaEntrada(blocoAtual % numFitas), bloco);
         blocoAtual++;
 
-        // Recarrega área com registros ainda não processados
-        area.clear();
-        for (int i = pos; i < std::min(pos + TAM_MEMORIA, (int)registros.size()); ++i) {
-            area.emplace_back(registros[i]);
+        // Prepara a nova área de seleção com registros ainda não processados
+        area = novaArea;
+
+        while ((int)area.size() < TAM_MEMORIA && pos < (int)registros.size()) {
+            area.emplace_back(registros[pos++]);
         }
-        pos += TAM_MEMORIA;
     }
 }
