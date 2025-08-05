@@ -70,9 +70,9 @@ void geraBlocosOrdenados(const vector<Registro>& registros, int numFitasEntrada)
 }
 
 string nomeFitaEntrada(int i) {
-    return "fita_in_" + to_string(i) + ".txt";
+    return "fitas/fita_in_" + to_string(i) + ".txt";
 }
 
 string nomeFitaSaida(int i) {
-    return "fita_out_" + to_string(i) + ".txt";
+    return "fitas/fita_out_" + to_string(i) + ".txt";
 }
