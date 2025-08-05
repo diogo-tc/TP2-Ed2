@@ -1,25 +1,26 @@
-#include "metodo2.h"
-#include "selecaoSubstituicao.h"
-#include "arquivo.h"
+#include "include/metodo2.h"
+#include "include/selecaoSubstituicao.h"
+#include "include/arquivo.h"
 #include <iostream>
 #include <chrono>
 #include <queue>
 #include <fstream>
+using namespace std;
 
 struct Fita {
-    std::ifstream entrada;
+    ifstream entrada;
     Registro atual;
     bool fim;
 
-    Fita(const std::string& nome) : entrada(nome), fim(false) {
+    Fita(const string& nome) : entrada(nome), fim(false) {
         avancar();
     }
 
     void avancar() {
-        std::string linha;
-        if (std::getline(entrada, linha)) {
-            atual.inscricao = std::stol(linha.substr(0, 8));
-            atual.nota = std::stof(linha.substr(9, 5));
+        string linha;
+        if (getline(entrada, linha)) {
+            atual.inscricao = stol(linha.substr(0, 8));
+            atual.nota = stof(linha.substr(9, 5));
             atual.estado = linha.substr(15, 2);
             atual.cidade = linha.substr(18, 50);
             atual.curso = linha.substr(69, 30);
@@ -34,7 +35,7 @@ struct Fita {
 };
 
 void executaMetodo2(int quantidade, int situacao, bool imprimir) {
-    using namespace std::chrono;
+    using namespace chrono;
     auto inicio = high_resolution_clock::now();
 
     auto registros = lerRegistros("PROVAO.TXT", quantidade, situacao);
@@ -42,20 +43,20 @@ void executaMetodo2(int quantidade, int situacao, bool imprimir) {
     geraBlocosComSelecaoSubstituicao(registros, 20);
 
     int numFitasEntrada = (quantidade + 19) / 20;
-    std::vector<Fita*> fitas;
+    vector<Fita*> fitas;
 
     for (int i = 0; i < numFitasEntrada; ++i) {
         fitas.push_back(new Fita(nomeFitaEntrada(i)));
     }
 
     auto comp = [](Fita* a, Fita* b) { return a->atual.nota > b->atual.nota; };
-    std::priority_queue<Fita*, std::vector<Fita*>, decltype(comp)> fila(comp);
+    priority_queue<Fita*, vector<Fita*>, decltype(comp)> fila(comp);
 
     for (auto* fita : fitas) {
         if (!fita->fim) fila.push(fita);
     }
 
-    std::vector<Registro> resultado;
+    vector<Registro> resultado;
     int comparacoes = 0, leituras = 0, escritas = 0;
 
     while (!fila.empty()) {
@@ -74,16 +75,16 @@ void executaMetodo2(int quantidade, int situacao, bool imprimir) {
 
     if (imprimir) {
         for (const auto& r : resultado) {
-            std::cout << r.inscricao << " " << r.nota << " " << r.estado << " "
+            cout << r.inscricao << " " << r.nota << " " << r.estado << " "
                       << r.cidade << " " << r.curso << "\n";
         }
     }
 
-    std::cout << "\n--- MÉTODO 2 ---\n";
-    std::cout << "Comparações: " << comparacoes << "\n";
-    std::cout << "Leituras: " << leituras << "\n";
-    std::cout << "Escritas: " << escritas << "\n";
-    std::cout << "Tempo de execução: " << tempo << " segundos\n";
+    cout << "\n--- MÉTODO 2 ---\n";
+    cout << "Comparações: " << comparacoes << "\n";
+    cout << "Leituras: " << leituras << "\n";
+    cout << "Escritas: " << escritas << "\n";
+    cout << "Tempo de execução: " << tempo << " segundos\n";
 
     for (auto* f : fitas) delete f;
 }

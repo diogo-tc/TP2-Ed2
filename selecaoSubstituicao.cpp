@@ -1,11 +1,13 @@
-#include "selecaoSubstituicao.h"
-#include "ordenacaoInterna.h"
-#include "arquivo.h"
+#include "include/selecaoSubstituicao.h"
+#include "include/ordenacaoInterna.h"
+#include "include/arquivo.h"
 
 #include <queue>
 #include <vector>
 #include <fstream>
 #include <algorithm>
+
+using namespace std;
 
 struct EntradaHeap {
     Registro reg;
@@ -19,11 +21,11 @@ struct EntradaHeap {
     }
 };
 
-void geraBlocosComSelecaoSubstituicao(const std::vector<Registro>& registros, int numFitas) {
+void geraBlocosComSelecaoSubstituicao(const vector<Registro>& registros, int numFitas) {
     const int TAM_MEMORIA = 20;
     int pos = 0, blocoAtual = 0;
 
-    std::vector<EntradaHeap> area;
+    vector<EntradaHeap> area;
 
     // Pré-carrega a área de seleção
     while (area.size() < TAM_MEMORIA && pos < (int)registros.size()) {
@@ -31,14 +33,14 @@ void geraBlocosComSelecaoSubstituicao(const std::vector<Registro>& registros, in
     }
 
     while (!area.empty()) {
-        std::priority_queue<
-            EntradaHeap, std::vector<EntradaHeap>, std::greater<EntradaHeap>> heap(area.begin(), area.end());
+        priority_queue<
+            EntradaHeap, vector<EntradaHeap>, greater<EntradaHeap>> heap(area.begin(), area.end());
 
-        std::vector<Registro> bloco;
+        vector<Registro> bloco;
         Registro ultimoInserido;
         ultimoInserido.nota = -1.0;
 
-        std::vector<EntradaHeap> novaArea;
+        vector<EntradaHeap> novaArea;
 
         while (!heap.empty()) {
             EntradaHeap menor = heap.top();

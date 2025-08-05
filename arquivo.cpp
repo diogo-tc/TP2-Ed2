@@ -1,24 +1,25 @@
-#include "arquivo.h"
+#include "include/arquivo.h"
+#include "include/ordenacaoInterna.h" 
 #include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <filesystem>
 
 #include <algorithm>         
-#include "ordenacaoInterna.h" 
+using namespace std;
 
 
-std::vector<Registro> lerRegistros(const std::string& nomeArquivo, int quantidade, int situacao) {
-    std::ifstream arquivo(nomeArquivo);
-    std::vector<Registro> registros;
+vector<Registro> lerRegistros(const string& nomeArquivo, int quantidade, int situacao) {
+    ifstream arquivo(nomeArquivo);
+    vector<Registro> registros;
    
-    std::string linha;
+    string linha;
     int lidas = 0;
 
-    while (std::getline(arquivo, linha) && lidas < quantidade) {
+    while (getline(arquivo, linha) && lidas < quantidade) {
         Registro r;
-        r.inscricao = std::stol(linha.substr(0, 8));
-        r.nota = std::stof(linha.substr(9, 5));
+        r.inscricao = stol(linha.substr(0, 8));
+        r.nota = stof(linha.substr(9, 5));
         r.estado = linha.substr(15, 2);
         r.cidade = linha.substr(18, 50);
         r.curso = linha.substr(69, 30);
@@ -27,9 +28,9 @@ std::vector<Registro> lerRegistros(const std::string& nomeArquivo, int quantidad
     }
 
     if (situacao == 1) {
-        std::sort(registros.begin(), registros.end(), comparaNota);
+        sort(registros.begin(), registros.end(), comparaNota);
     } else if (situacao == 2) {
-        std::sort(registros.begin(), registros.end(), [](const Registro& a, const Registro& b) {
+        sort(registros.begin(), registros.end(), [](const Registro& a, const Registro& b) {
             return a.nota > b.nota;
         });
     }
@@ -37,26 +38,26 @@ std::vector<Registro> lerRegistros(const std::string& nomeArquivo, int quantidad
     return registros;
 }
 
-void escreveRegistros(const std::string& nomeArquivo, const std::vector<Registro>& registros) {
-    std::ofstream arquivo(nomeArquivo);
+void escreveRegistros(const string& nomeArquivo, const vector<Registro>& registros) {
+    ofstream arquivo(nomeArquivo);
 
     for (const auto& r : registros) {
-        arquivo << std::setw(8) << std::setfill('0') << r.inscricao << " "
-                << std::fixed << std::setprecision(1) << std::setw(5) << r.nota << " "
+        arquivo << setw(8) << setfill('0') << r.inscricao << " "
+                << fixed << setprecision(1) << setw(5) << r.nota << " "
                 << r.estado << " "
                 << r.cidade << " "
                 << r.curso << "\n";
     }
 }
 
-void geraBlocosOrdenados(const std::vector<Registro>& registros, int numFitas) {
+void geraBlocosOrdenados(const vector<Registro>& registros, int numFitas) {
     int tamBloco = 20;
     int totalBlocos = (registros.size() + tamBloco - 1) / tamBloco;
 
     for (int i = 0; i < totalBlocos; ++i) {
-        std::vector<Registro> bloco;
+        vector<Registro> bloco;
         int ini = i * tamBloco;
-        int fim = std::min((i + 1) * tamBloco, (int)registros.size());
+        int fim = min((i + 1) * tamBloco, (int)registros.size());
 
         for (int j = ini; j < fim; ++j) {
             bloco.push_back(registros[j]);
@@ -67,10 +68,10 @@ void geraBlocosOrdenados(const std::vector<Registro>& registros, int numFitas) {
     }
 }
 
-std::string nomeFitaEntrada(int i) {
-    return "fita_in_" + std::to_string(i) + ".txt";
+string nomeFitaEntrada(int i) {
+    return "fita_in_" + to_string(i) + ".txt";
 }
 
-std::string nomeFitaSaida(int i) {
-    return "fita_out_" + std::to_string(i) + ".txt";
+string nomeFitaSaida(int i) {
+    return "fita_out_" + to_string(i) + ".txt";
 }

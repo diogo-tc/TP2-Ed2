@@ -1,31 +1,31 @@
-#include "quicksortExterno.h"
-#include "registro.h"
-#include "arquivo.h"
+#include "include/quicksortExterno.h"
+#include "include/registro.h"
+#include "include/arquivo.h"
 
 #include <fstream>
 #include <vector>
 #include <algorithm>
 #include <iomanip>
-  
+using namespace std;
 
-void quicksortExterno(const std::string& nomeArquivo, int esq, int dir,
+void quicksortExterno(const string& nomeArquivo, int esq, int dir,
                       int& comparacoes, int& leituras, int& escritas) {
     if (esq >= dir) return;
 
     // Leitura de até 20 registros entre esq e dir
-    std::ifstream arq(nomeArquivo);
-    std::vector<Registro> memoria;
+    ifstream arq(nomeArquivo);
+    vector<Registro> memoria;
 
     int total = dir - esq + 1;
-    int qtdLer = std::min(20, total);
+    int qtdLer = min(20, total);
     int linhaAtual = 0;
 
-    std::string linha;
-    while (std::getline(arq, linha) && (int)memoria.size() < qtdLer) {
+    string linha;
+    while (getline(arq, linha) && (int)memoria.size() < qtdLer) {
         if (linhaAtual >= esq && linhaAtual <= dir) {
             Registro r;
-            r.inscricao = std::stol(linha.substr(0, 8));
-            r.nota = std::stof(linha.substr(9, 5));
+            r.inscricao = stol(linha.substr(0, 8));
+            r.nota = stof(linha.substr(9, 5));
             r.estado = linha.substr(15, 2);
             r.cidade = linha.substr(18, 50);
             r.curso = linha.substr(69, 30);
@@ -39,7 +39,7 @@ void quicksortExterno(const std::string& nomeArquivo, int esq, int dir,
     Registro pivo = memoria.back();
     comparacoes++;
 
-    std::vector<Registro> menores, maiores;
+    vector<Registro> menores, maiores;
 
     for (int i = 0; i < (int)memoria.size() - 1; ++i) {
         comparacoes++;
@@ -50,21 +50,21 @@ void quicksortExterno(const std::string& nomeArquivo, int esq, int dir,
     }
 
     // Junta partições
-    std::vector<Registro> resultado = menores;
+    vector<Registro> resultado = menores;
     resultado.push_back(pivo);
     resultado.insert(resultado.end(), maiores.begin(), maiores.end());
 
     // Escreve no mesmo arquivo, sobrescrevendo as linhas [esq..dir]
-    std::ifstream original(nomeArquivo);
-    std::ofstream temp("temp.txt");
+    ifstream original(nomeArquivo);
+    ofstream temp("temp.txt");
     linhaAtual = 0;
     int iRes = 0;
 
-    while (std::getline(original, linha)) {
+    while (getline(original, linha)) {
         if (linhaAtual >= esq && linhaAtual <= dir && iRes < (int)resultado.size()) {
             const Registro& r = resultado[iRes++];
-            temp << std::setw(8) << std::setfill('0') << r.inscricao << " "
-                 << std::fixed << std::setprecision(1) << std::setw(5) << r.nota << " "
+            temp << setw(8) << setfill('0') << r.inscricao << " "
+                 << fixed << setprecision(1) << setw(5) << r.nota << " "
                  << r.estado << " "
                  << r.cidade << " "
                  << r.curso << "\n";
@@ -78,8 +78,8 @@ void quicksortExterno(const std::string& nomeArquivo, int esq, int dir,
     original.close();
     temp.close();
 
-    std::remove(nomeArquivo.c_str());
-    std::rename("temp.txt", nomeArquivo.c_str());
+    remove(nomeArquivo.c_str());
+    rename("temp.txt", nomeArquivo.c_str());
 
     int meio = esq + menores.size();
     quicksortExterno(nomeArquivo, esq, meio - 1, comparacoes, leituras, escritas);
