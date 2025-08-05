@@ -8,4 +8,4 @@
 void ordenaInternamente(std::vector<Registro>& registros);
 
 #endif // ORDENACAO_INTERNA_H
- 
+  

@@ -5,4 +5,4 @@
 void executaMetodo2(int quantidade, int situacao, bool imprimir);
 
 #endif // METODO2_H
- 
+  

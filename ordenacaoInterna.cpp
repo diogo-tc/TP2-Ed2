@@ -25,4 +25,4 @@ void quicksort(std::vector<Registro>& v, int esquerda, int direita) {
 void ordenaInternamente(std::vector<Registro>& registros) {
     quicksort(registros, 0, registros.size() - 1);
 }
- 
+  

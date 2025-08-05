@@ -7,4 +7,4 @@
 void executaMetodo1(int quantidade, int situacao, bool imprimir);
 
 #endif // METODO1_H
- 
+  

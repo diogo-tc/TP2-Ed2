@@ -11,7 +11,7 @@
 std::vector<Registro> lerRegistros(const std::string& nomeArquivo, int quantidade, int situacao) {
     std::ifstream arquivo(nomeArquivo);
     std::vector<Registro> registros;
- 
+   
     std::string linha;
     int lidas = 0;
 

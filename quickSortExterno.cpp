@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
- 
+  
 
 void quicksortExterno(const std::string& nomeArquivo, int esq, int dir,
                       int& comparacoes, int& leituras, int& escritas) {

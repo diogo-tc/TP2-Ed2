@@ -74,7 +74,7 @@ void geraBlocosComSelecaoSubstituicao(const std::vector<Registro>& registros, in
         area = novaArea;
 
         while ((int)area.size() < TAM_MEMORIA && pos < (int)registros.size()) {
-            area.emplace_back(registros[pos++]); 
+            area.emplace_back(registros[pos++]);  
         }
     }
 }

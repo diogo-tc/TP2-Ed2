@@ -1,4 +1,4 @@
-# Nome do executável
+# Nome do executável  
 EXEC = ordena
 
 # Compilador e flags

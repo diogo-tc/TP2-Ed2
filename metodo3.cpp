@@ -12,7 +12,7 @@ void executaMetodo3(int quantidade, int situacao, bool imprimir) {
     using namespace std::chrono;
     auto inicio = high_resolution_clock::now();
 
-    auto registros = lerRegistros("PROVAO.TXT", quantidade, situacao);
+    auto registros = lerRegistros("PROVAO.TXT", quantidade, situacao); 
     std::string nomeTemp = "quicksort_temp.txt";
     escreveRegistros(nomeTemp, registros);
 
