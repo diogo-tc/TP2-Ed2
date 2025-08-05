@@ -1,0 +1,20 @@
+00359793 000.0 PR LONDRINA                                           ADMINISTRACAO                 
+00141989 000.0 PR LONDRINA                                           ADMINISTRACAO                 
+00421422 017.5 PR LONDRINA                                           ADMINISTRACAO                 
+00360424 032.0 PR LONDRINA                                           ADMINISTRACAO                 
+00421168 041.8 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00405280 041.8 PR LONDRINA                                           ADMINISTRACAO                 
+00049198 045.0 PR LONDRINA                                           ADMINISTRACAO                 
+00175131 048.0 PR LONDRINA                                           ADMINISTRACAO                 
+00422254 050.5 PR LONDRINA                                           ADMINISTRACAO                 
+00430923 052.5 PR LONDRINA                                           ADMINISTRACAO                 
+00122665 058.3 PR LONDRINA                                           ADMINISTRACAO                 
+00351965 058.5 PR LONDRINA                                           ADMINISTRACAO                 
+00198972 059.8 PR LONDRINA                                           ADMINISTRACAO                 
+00140465 061.3 PR LONDRINA                                           ADMINISTRACAO                 
+00376528 061.8 PR LONDRINA                                           ADMINISTRACAO                 
+00359807 063.3 PR LONDRINA                                           ADMINISTRACAO                 
+00206712 064.8 PR LONDRINA                                           ADMINISTRACAO                 
+00339678 065.0 PR LONDRINA                                           ADMINISTRACAO                 
+00219990 067.3 PR LONDRINA                                           ADMINISTRACAO                 
+00112768 068.3 PR LONDRINA                                           ADMINISTRACAO                 

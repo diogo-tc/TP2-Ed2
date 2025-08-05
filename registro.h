@@ -16,3 +16,4 @@ bool comparaNota(const Registro& a, const Registro& b);
 
 #endif // REGISTRO_H
 
+ 

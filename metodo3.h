@@ -5,3 +5,4 @@
 void executaMetodo3(int quantidade, int situacao, bool imprimir);
 
 #endif // METODO3_H
+ 

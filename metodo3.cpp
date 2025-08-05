@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <chrono>
-#include <fstream>
+#include <fstream> 
 #include <vector>
 
 void executaMetodo3(int quantidade, int situacao, bool imprimir) {

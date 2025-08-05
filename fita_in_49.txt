@@ -1,0 +1,20 @@
+00046771 000.0 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00168156 000.0 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00446905 000.0 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00446102 000.0 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00119835 026.3 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00143639 026.3 PR CURITIBA                                           ADMINISTRACAO                 
+00298783 028.3 PR CURITIBA                                           ADMINISTRACAO                 
+00214523 029.0 PR CURITIBA                                           ADMINISTRACAO                 
+00317654 037.0 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00042668 042.8 PR CURITIBA                                           ADMINISTRACAO                 
+00209858 045.8 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00280259 046.8 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00107535 048.5 PR CURITIBA                                           ADMINISTRACAO                 
+00162993 051.5 PR CURITIBA                                           ADMINISTRACAO                 
+00140865 055.8 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00438411 058.3 PR SAO JOSE DOS PINHAIS                               ADMINISTRACAO                 
+00349722 066.5 PR CURITIBA                                           ADMINISTRACAO                 
+00105494 068.0 PR CURITIBA                                           ADMINISTRACAO                 
+00205218 068.8 PR CURITIBA                                           ADMINISTRACAO                 
+00444743 071.8 PR CURITIBA                                           ADMINISTRACAO                 

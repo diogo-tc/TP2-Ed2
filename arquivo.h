@@ -19,3 +19,4 @@ std::string nomeFitaEntrada(int i);
 std::string nomeFitaSaida(int i);
 
 #endif // ARQUIVO_H
+ 
