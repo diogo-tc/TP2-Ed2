@@ -50,7 +50,7 @@ void escreveRegistros(const string& nomeArquivo, const vector<Registro>& registr
     }
 }
 
-void geraBlocosOrdenados(const vector<Registro>& registros, int numFitas) {
+void geraBlocosOrdenados(const vector<Registro>& registros, int numFitasEntrada) {
     int tamBloco = 20;
     int totalBlocos = (registros.size() + tamBloco - 1) / tamBloco;
 
@@ -64,7 +64,8 @@ void geraBlocosOrdenados(const vector<Registro>& registros, int numFitas) {
         }
 
         ordenaInternamente(bloco);
-        escreveRegistros(nomeFitaEntrada(i), bloco);
+        // Distribui os blocos entre as fitas usando módulo
+        escreveRegistros(nomeFitaEntrada(i % numFitasEntrada), bloco);
     }
 }
 
